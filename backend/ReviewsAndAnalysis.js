@@ -20,7 +20,7 @@ export const sortReviews = (fileName, revNum) => {
   var bottomOut = [];
   var output = [];
   var reviews = JSON.parse(fileName);
-  for (i = 0; i < reviews.length; i ++) {
+  for (var i = 0; i < reviews.length; i ++) {
     output.push([reviews[i].sentiment.score, reviews[i].text.content]);
   }
   output.sort();
