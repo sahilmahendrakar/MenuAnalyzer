@@ -117,8 +117,11 @@ export default class CameraScreen extends React.Component{
             }
         } catch (e) {
             console.log("error: "+e);
+<<<<<<< HEAD
+=======
             console.log(blob)
             console.log(firebase.storage.Reference.bucket)
+>>>>>>> main
             alert('Upload failed, sorry :(');
         } finally {
             this.setState({ uploading: false });

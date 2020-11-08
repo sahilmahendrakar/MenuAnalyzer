@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import CameraScreen from './screens/CameraScreen'
-import uuid from 'uuid';
+import CameraScreen from './screens/CameraScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+import RestaurantSelector from './screens/RestaurantSelector'
 import * as firebase from 'firebase';
 import {firebaseConfig} from './config/firebaseConfig';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -23,6 +24,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name= "WelcomeScreen" component={WelcomeScreen} options={ {headerShown: false }}/>
+        <Stack.Screen name= "RestaurantSelector" component={RestaurantSelector} options={ {headerShown: false }}/>
         <Stack.Screen name= "CameraScreen" component={CameraScreen} options={ {headerShown: false }}/>
         <Stack.Screen name= "MenuDisplayScreen" component={ MenuDisplayScreen } options={ {headerShown: false }}/>
         <Stack.Screen name= "ReviewScreen" component={ ReviewScreen } options={ {headerShown: false }}/>
