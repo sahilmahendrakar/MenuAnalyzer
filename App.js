@@ -11,6 +11,7 @@ import { getRestaurantsFromLatLong } from './backend/YelpApi';
 import RestaurantSelectScreen from './screens/RestaurantSelectScreen';
 import MenuDisplayScreen from './screens/MenuDisplayScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import InfoGodScreen from './screens/InfoGodScreen';
 
 
 const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name= "InfoGodScreen" component={InfoGodScreen} options={ {headerShown: false }}/>  
         <Stack.Screen name= "WelcomeScreen" component={WelcomeScreen} options={ {headerShown: false }}/>
         <Stack.Screen name= "RestaurantSelector" component={RestaurantSelector} options={ {headerShown: false }}/>
         <Stack.Screen name= "CameraScreen" component={CameraScreen} options={ {headerShown: false }}/>
