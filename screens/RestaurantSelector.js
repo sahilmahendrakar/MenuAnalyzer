@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { ScrollView,StyleSheet, Text, View, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import Constants from 'expo-constants';
-import styling from '../config/styling';
+import styling from '../styling';
 
 const YELP_API_KEY = '9xPHVV7uN6qjA0KF-M6TtsCn2-oMPCa2orDX85XZCAa9EL9hJA0A9U_1OTRUuivYYnoNw0XVgEZ_Z-AIWwBkVY2-2hP6DsL_obYbAm_bcbFVxwysbm68WP7bb-WmX3Yx';
 
 
-getRestaurantsFromLatLong = (lat, long) => {
+const getRestaurantsFromLatLong = (lat, long) => {
     return fetch(`https://api.yelp.com/v3/businesses/search?categories=restaurants&latitude=${lat}&longitude=${long}&sort_by=distance`, {headers: {
           authorization: 'Bearer ' + YELP_API_KEY,
       }})
@@ -19,7 +19,7 @@ getRestaurantsFromLatLong = (lat, long) => {
       });
 }
 
-onSelection = (restaurantalias,nav) => {
+const onSelection = (restaurantalias,nav) => {
     console.log(restaurantalias)
     alert('You tapped the button!')
     nav.navigate("CameraScreen",{restaurant:restaurantalias})
@@ -49,7 +49,7 @@ export default class RestaurantSelector extends React.Component {
                 <View justifyContent = 'center' marginTop ='5%'><Text style={styles.header}>Where to Eat?</Text></View>
                 <ScrollView style={styles.scrollView}>
                     {this.state.restaurants===null? []:this.state.restaurants.map((restaurant, key)=>(
-                        <View style = {styles.restContainer}>
+                        <View key={key} style = {styles.restContainer}>
                             <View style={styles.imageContainer}>
                                 <Image source = {{uri: restaurant.image_url}} style ={styles.image} />
                             </View>

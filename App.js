@@ -8,7 +8,6 @@ import * as firebase from 'firebase';
 import {firebaseConfig} from './config/firebaseConfig';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getRestaurantsFromLatLong } from './backend/YelpApi';
-import RestaurantSelectScreen from './screens/RestaurantSelectScreen';
 import MenuDisplayScreen from './screens/MenuDisplayScreen';
 import ReviewScreen from './screens/ReviewScreen';
 

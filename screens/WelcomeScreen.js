@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, StatusBar } from 'react-native';
 import * as Location from 'expo-location';
-import styling from '../config/styling';
+import styling from '../styling';
 
 
-locate = (nav) => {
+const locate = (nav) => {
     (async () => {
         let { status } = await Location.requestPermissionsAsync();
         if (status !== 'granted') {
