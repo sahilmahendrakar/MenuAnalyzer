@@ -21,7 +21,6 @@ getRestaurantsFromLatLong = (lat, long) => {
 
 onSelection = (restaurantalias,nav) => {
     console.log(restaurantalias)
-    alert('You tapped the button!')
     nav.navigate("CameraScreen",{restaurant:restaurantalias})
 }
 
