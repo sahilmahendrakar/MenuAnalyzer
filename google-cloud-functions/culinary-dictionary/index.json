@@ -1,0 +1,44 @@
+/**
+ * HTTP Cloud Function.
+ *
+ * @param {Object} req Cloud Function request context.
+ *                     More info: https://expressjs.com/en/api.html#req
+ * @param {Object} res Cloud Function response context.
+ *                     More info: https://expressjs.com/en/api.html#res
+ */
+
+ const escapeHtml = require('escape-html');
+ const fetch = require('node-fetch');
+ const cheerio = require('cheerio');
+ 
+ var definitions = [];
+ 
+ exports.helloWorld = (req, res) => { 
+   var fs = require('file-system');
+   getDictionary().then(() => {
+     fs.writeFile("thing.json", JSON.stringify(definitions));
+     res.send(definitions)
+     });
+ }
+ 
+ async function getDictionary() {
+   await getURLDictionary("https://theodora.com/food/index.html");
+   for (var i = 0; i < 26; i++) {
+     await getURLDictionary("https://theodora.com/food/culinary_dictionary_food_glossary_" + String.fromCharCode(97 + i) + ".html");
+   } 
+ }
+ 
+ async function getURLDictionary(url) {
+   const response = await fetch(url);
+   const responseHTML = await response.text();
+   const $ = cheerio.load(responseHTML);
+ 
+   $("#mainpage > font > table > tbody > tr").not(':first-child').each((index, element) => {
+     const tds = $(element).find("td");
+ 
+     definitions.push({
+       "term": $(tds[0]).text().replace(/\t/g,""),
+       "definition": $(tds[1]).text().replace(/\t/g,"")
+     })
+   });
+ }
