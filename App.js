@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import { getAllReviewsFromRestaurant } from './API/YelpAPI';
+import { getAllReviewsFromRestaurant, getRestaurantsFromYelp } from './API/YelpAPI';
 
 export default App = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://www.yelp.com/biz/le-bernardin-new-york').then((response) => response.text()).then((json) => console.log(json)).catch((error) => {
-      console.error(error);
-    });
+    getRestaurantsFromYelp('Le Bernadin').then((response) => console.log(response.businesses[0]))
   });
 
   return (
@@ -26,3 +24,4 @@ export default App = () => {
     </View>
   );
 };
+

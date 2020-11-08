@@ -34,3 +34,16 @@ export const getAllReviewsFromRestaurant = (name) => {
   return getRestaurantsFromYelp(name)
   .then((response) => {return getAllReviewsFromRestaurantWithID(getTopRestaurantIdfromRestaurants(response))})
 }
+
+export const getRestaurantsFromLatLong = (lat, long) => {
+  return fetch(`https://api.yelp.com/v3/businesses/search?categories=restaurants&latitude=${lat}&longitude=${long}`, {headers: {
+        authorization: 'Bearer ' + YELP_API_KEY,
+    }})
+    .then((response) => response.json())
+    .then((json) => {
+      return json.businesses;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
