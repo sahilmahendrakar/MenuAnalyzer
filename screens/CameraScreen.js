@@ -9,7 +9,7 @@ import { Text, View, TouchableOpacity, ActivityIndicator,
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import firebase from 'firebase';
-import {firebaseConfig} from '../config/firebaseconfig';
+import {firebaseConfig} from '../config/firebaseConfig';
 import styles from './styles';
 import Toolbar from './toolbar.component';
 import Gallery from './gallery.component';
@@ -105,25 +105,31 @@ export default class CameraScreen extends React.Component{
         }
     };
 
+
     _handleImagePicked = async pickerResult => {
         try {
             this.setState({ uploading: true });
     
             if (!pickerResult.cancelled) {
-                const uploadUrl = await uploadImageAsync(pickerResult.uri);
+                const [uploadUrl, uuid] = await uploadImageAsync(pickerResult.uri);
                 this.setState({ image: uploadUrl });
+                this.props.navigation.navigate('MenuDisplayScreen', {image_id: uuid});
             }
         } catch (e) {
             console.log("error: "+e);
+<<<<<<< HEAD
+=======
+            console.log(blob)
+            console.log(firebase.storage.Reference.bucket)
+>>>>>>> main
             alert('Upload failed, sorry :(');
         } finally {
             this.setState({ uploading: false });
         }
     };
-    
 }
 
-async function uploadImageAsync(uri) {
+const uploadImageAsync = async (uri) => {
     const blob = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = function() {
@@ -137,12 +143,14 @@ async function uploadImageAsync(uri) {
         xhr.open('GET', uri, true);
         xhr.send(null);
     });
-
-    const ref = firebase.storage().ref().child(await nanoid());
+    let uuid = await nanoid();
+    const ref = firebase.storage().ref().child(uuid);
     const snapshot = await ref.put(blob);
 
     // We're done with the blob, close and release it
     blob.close();
 
-    return await snapshot.ref.getDownloadURL();
+    let uploadUri = await snapshot.ref.getDownloadURL()
+
+    return [uploadUri, uuid];
 }
