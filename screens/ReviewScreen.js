@@ -7,7 +7,7 @@ export default function ReviewScreen({route, navigation}) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        
+        console.log(route.params);
     }, [])
 
     return (

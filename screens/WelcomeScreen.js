@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, StatusBar } from 'react-native';
 import * as Location from 'expo-location';
-import styling from '../config/styling';
+import styling from '../styling';
 
 
-locate = (nav) => {
+const locate = (nav) => {
     (async () => {
         let { status } = await Location.requestPermissionsAsync();
         if (status !== 'granted') {
@@ -22,7 +22,7 @@ const WelcomeScreen = ({navigation}) =>{
     return (
         <View style={styles.container}>
       <Image style={styles.image} source={require('../assets/logo.png')} />
-      <Text style={styles.text}>FoodI</Text>
+      <Text style={styles.text}>Foodi</Text>
 
       <TouchableOpacity activeOpacity={0.8} style={{top:50}} onPress = {() => locate(navigation)}>
         <View style = {{alignItems: 'center', backgroundColor: '#fb5b5a',
