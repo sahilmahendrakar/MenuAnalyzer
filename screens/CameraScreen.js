@@ -105,26 +105,28 @@ export default class CameraScreen extends React.Component{
         }
     };
 
+
     _handleImagePicked = async pickerResult => {
         try {
             this.setState({ uploading: true });
     
             if (!pickerResult.cancelled) {
-                const uploadUrl = await uploadImageAsync(pickerResult.uri);
+                const [uploadUrl, uuid] = await uploadImageAsync(pickerResult.uri);
                 this.setState({ image: uploadUrl });
+                this.props.navigation.navigate('MenuDisplayScreen', {image_id: uuid});
             }
         } catch (e) {
             console.log("error: "+e);
+            console.log(blob)
             console.log(firebase.storage.Reference.bucket)
             alert('Upload failed, sorry :(');
         } finally {
             this.setState({ uploading: false });
         }
     };
-    
 }
 
-async function uploadImageAsync(uri) {
+const uploadImageAsync = async (uri) => {
     const blob = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = function() {
@@ -138,12 +140,14 @@ async function uploadImageAsync(uri) {
         xhr.open('GET', uri, true);
         xhr.send(null);
     });
-
-    const ref = firebase.storage().ref().child(await nanoid());
+    let uuid = await nanoid();
+    const ref = firebase.storage().ref().child(uuid);
     const snapshot = await ref.put(blob);
 
     // We're done with the blob, close and release it
     blob.close();
 
-    return await snapshot.ref.getDownloadURL();
+    let uploadUri = await snapshot.ref.getDownloadURL()
+
+    return [uploadUri, uuid];
 }

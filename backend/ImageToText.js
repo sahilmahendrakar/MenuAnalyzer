@@ -1,5 +1,5 @@
-const { IMAGE_BUCKET } = require("../config/imageToTextConfig")
-const { IMAGE_TO_TEXT_ENDPOINT } = require("./config")
+
+const { IMAGE_TO_TEXT_ENDPOINT, IMAGE_BUCKET } = require("./config")
 
 const getImageToTextURL = (bucket, filename) => {
     return `${IMAGE_TO_TEXT_ENDPOINT}?bucket=${bucket}&filename=${filename}`
