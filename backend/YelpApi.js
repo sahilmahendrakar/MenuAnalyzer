@@ -1,4 +1,4 @@
-import {YELP_API_KEY} from "./config";
+import {YELP_API_KEY} from "./api/config";
 
 export const getRestaurantsFromYelp = (name) => {
     return fetch(`https://api.yelp.com/v3/businesses/search?term=${name}&categories=restaurants&location='New York City'`, {headers: {

@@ -6,8 +6,8 @@ import uuid from 'uuid';
 import * as firebase from 'firebase';
 import {firebaseConfig} from './config/firebaseConfig';
 import { createStackNavigator } from '@react-navigation/stack';
-import { imageToText } from './api/ImageToText';
-import { getReviewsAndAnalysis } from './api/ReviewsAndAnalysis';
+import { getRestaurantsFromLatLong } from './backend/YelpApi';
+
 
 const Stack = createStackNavigator();
 
@@ -17,7 +17,7 @@ if (!firebase.apps.length) {
 }
 
 export default function App() {
-  getReviewsAndAnalysis('le-bernardin-new-york', 'wine').then((body) => console.log(body))
+  getRestaurantsFromLatLong(37.2817412, -122.0279051).then((restaurants) => console.log(restaurants))
   return (
     <NavigationContainer>
       <Stack.Navigator>
