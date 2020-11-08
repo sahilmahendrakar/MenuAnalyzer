@@ -9,7 +9,7 @@ import { Text, View, TouchableOpacity, ActivityIndicator,
 import { Camera } from 'expo-camera';
 import * as Permissions from 'expo-permissions';
 import firebase from 'firebase';
-import {firebaseConfig} from '../config/firebaseconfig';
+import {firebaseConfig} from '../config/firebaseConfig';
 import styles from './styles';
 import Toolbar from './toolbar.component';
 import Gallery from './gallery.component';

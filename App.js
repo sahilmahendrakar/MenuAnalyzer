@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import CameraScreen from './screens/CameraScreen'
 import uuid from 'uuid';
 import * as firebase from 'firebase';
-import {firebaseConfig} from './config/firebaseconfig';
+import {firebaseConfig} from './config/firebaseConfig';
 import { createStackNavigator } from '@react-navigation/stack';
+import { imageToText } from './api/ImageToText';
+import { getReviewsAndAnalysis } from './api/ReviewsAndAnalysis';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +17,7 @@ if (!firebase.apps.length) {
 }
 
 export default function App() {
+  getReviewsAndAnalysis('le-bernardin-new-york', 'wine').then((body) => console.log(body))
   return (
     <NavigationContainer>
       <Stack.Navigator>
