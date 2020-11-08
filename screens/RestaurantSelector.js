@@ -21,8 +21,7 @@ const getRestaurantsFromLatLong = (lat, long) => {
 
 const onSelection = (restaurantalias,nav) => {
     console.log(restaurantalias)
-    alert('You tapped the button!')
-    nav.navigate("CameraScreen",{restaurant:restaurantalias})
+    nav.navigate("CameraScreen", {restaurant:restaurantalias})
 }
 
 export default class RestaurantSelector extends React.Component {
@@ -54,7 +53,7 @@ export default class RestaurantSelector extends React.Component {
                                 <Image source = {{uri: restaurant.image_url}} style ={styles.image} />
                             </View>
                             <View flex={1}>
-                                <TouchableOpacity onPress = {() => onSelection(restaurant.restaurantalias, this.props.navigation)}>
+                                <TouchableOpacity style={styles.button} onPress = {() => onSelection(restaurant.alias, this.props.navigation)}>
                                     <Text style={styles.text}>{restaurant.name}</Text>
                                 </TouchableOpacity>
                             </View>
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
         backgroundColor: styling.primaryColor,
     },
     header:{
+        textAlign: 'center',
         fontSize: 50,
         fontWeight: "bold",
         color: "white",
@@ -84,23 +84,39 @@ const styles = StyleSheet.create({
         marginTop:10
     },
     restContainer:{
-        backgroundColor: styling.secondaryColor,
+        padding: 20,
+        marginTop: 20,
+        marginBottom: 20,
+        borderRadius: 25,
         width: '100%',
         height: 100,
         flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent:'center',
         alignItems: 'center'
     },
     imageContainer: { 
+        
         width: 100, 
         height: 100,
         flex:1 
     },
     image: { 
+        borderRadius: 25,
         width: 100, 
         height: 100 
-    },text: {
-        fontSize: 25,
+    },
+    button: {
+        marginRight: 10,
+        padding: 10,
+        borderRadius: 25,
+        backgroundColor: styling.secondaryColor,
+    },
+    text: {
+        textAlign: 'center',
+        fontSize: 20,
+        flexWrap: 'wrap',
+        flexDirection: 'column',
         fontWeight: "bold",
         color: "white",
         fontFamily: styling.mainFont

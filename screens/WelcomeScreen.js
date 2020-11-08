@@ -22,7 +22,7 @@ const WelcomeScreen = ({navigation}) =>{
     return (
         <View style={styles.container}>
       <Image style={styles.image} source={require('../assets/logo.png')} />
-      <Text style={styles.text}>FoodI</Text>
+      <Text style={styles.text}>Foodi</Text>
 
       <TouchableOpacity activeOpacity={0.8} style={{top:50}} onPress = {() => locate(navigation)}>
         <View style = {{alignItems: 'center', backgroundColor: '#fb5b5a',

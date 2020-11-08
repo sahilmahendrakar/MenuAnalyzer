@@ -49,7 +49,6 @@ export default class CameraScreen extends React.Component{
         const camera = await Permissions.askAsync(Permissions.CAMERA);
         const audio = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
         const hasCameraPermission = (camera.status === 'granted' && audio.status === 'granted');
-
         this.setState({ hasCameraPermission });
     };
 
@@ -113,7 +112,11 @@ export default class CameraScreen extends React.Component{
             if (!pickerResult.cancelled) {
                 const [uploadUrl, uuid] = await uploadImageAsync(pickerResult.uri);
                 this.setState({ image: uploadUrl });
-                this.props.navigation.navigate('MenuDisplayScreen', {image_id: uuid});
+                
+                this.props.navigation.navigate('MenuDisplayScreen', {
+                    image_id: uuid,
+                    restaurant: this.props.route.params.restaurant,
+                });
             }
         } catch (e) {
             console.log("error: "+e);
