@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList, ActivityIndicator, Dimensions, StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+
+import styling from '../config/styling';
+
 import { getReviewsAndAnalysis } from '../backend/ReviewsAndAnalysis';
 import { searchDictionary } from '../backend/Dictionary';
-import {styling } from '../config.styling';
+
 
 function InfoGodScreen(props) {
     // const [reviews, setReviews] = useState(null);
@@ -11,6 +14,7 @@ function InfoGodScreen(props) {
 
     // const restaurantAlias = "le-bernardin-new-york";
     const dish = "salmon"; 
+    const dishCap = dish.substring(0,1).toUpperCase() + dish.substring(1);
 
     // useEffect(() => {
     //     setDefinition("peepepoopoo");
@@ -41,36 +45,45 @@ function InfoGodScreen(props) {
     return (
         <SafeAreaView style={styles.container}>
         {/* {isLoading ? <ActivityIndicator/> :  */}
+        <View style={{height:20}}></View>
+
+        <View style={styles.container}>
+
         <View style={styles.h1box}> 
-            <Text style={styles.h1text}>All about {dish} !</Text>
+            <Text style={styles.h1text}> All about {dishCap}! </Text>
         </View>
 
         <View style={styles.h2box}> 
-            <Text style={styles.h2text}>What other people are saying</Text>
+            <Text style={styles.h2text}> What Other People are Saying </Text>
         </View>
 
             <View style={styles.revs}>
                 
-                <ScrollView> 
-                    <Text>{getTopRevs(reviews)[0]}</Text>
-                    <Text>{getTopRevs(reviews)[1]}</Text>
+                <ScrollView contentContainerStyle={styles.scroll}> 
+                    <Text style={styles.text}>"{getTopRevs(reviews)[0]}"{"\n"}</Text>
+                    <Text style={styles.text}>"{getTopRevs(reviews)[1]}"{"\n"}</Text>
                 </ScrollView>
 
-                <ScrollView> 
-                    <Text>{getBotRevs(reviews)[0]}</Text>
-                    <Text>{getBotRevs(reviews)[1]}</Text>
+                <ScrollView contentContainerStyle={styles.scroll}> 
+                    <Text style={styles.text}>"{getBotRevs(reviews)[0]}"{"\n"}</Text>
+                    <Text style={styles.text}>"{getBotRevs(reviews)[1]}"{"\n"}</Text>
                 </ScrollView>
             </View>
 
         <View style={styles.h2box}> 
-            <Text style={styles.h2text}> Some background and definitions</Text>
+            <Text style={styles.h2text}> Terms to Know </Text>
         </View>
 
             <ScrollView contentContainerStyle={styles.defi}>
-                <Text>{def}</Text>
+                
+                <Text style={styles.text}>
+                    <Text style={{fontWeight: "bold", alignText: "left"}}>{dishCap}: </Text>
+                    {def}
+                </Text>
 
             </ScrollView>
         {/* } */}
+        </View>
         </SafeAreaView>
     );
 }
@@ -83,6 +96,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         // flexDirection: 'row',
+        backgroundColor: styling.primaryColor,
       },
     revs: {
         flex: 1,
@@ -91,37 +105,66 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 20,
+        left: 8
     },
     defi: {
         // height: 10,
         // flex: 0.05,
         // alignSelf: "baseline",
-        width: Dimensions.get('window').width,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        width: Dimensions.get('window').width - 40,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 20,
     },
     h1box: {
-        height: 60,
-        width: Dimensions.get('window').width,
-        backgroundColor: 'cyan',
+        // flex: 0.3,
+        // width: Dimensions.get('window').width,
+        // backgroundColor: styling.secondaryColor,
         alignItems: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
+        borderRadius: 25,
+        flexWrap: 'wrap',
+        padding: 15
     },
     h1text: {
-        fontSize:50,
+        fontSize:40,
+        color: styling.secondaryColor,
+        fontFamily: styling.mainFont,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        padding: 10,
+        fontWeight: 'bold',
+        flexWrap: 'wrap',
     },
     h2box: {
-        height: 40,
-        width: Dimensions.get('window').width,
-        backgroundColor: 'yellow',
+        // height: 40,
+        // flex:1,
+        backgroundColor: styling.secondaryColor,
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 50,
     },
     h2text: {
-        fontSize:30,
+        fontSize:24,
+        // alignSelf: 'center',
+        color: '#fff',
+        fontFamily: styling.mainFont,
+        fontWeight: 'bold',
+        justifyContent: 'center',
+        padding:10
+    },
+    scroll: {
+        flexGrow: 1, 
+        // justifyContent: 'center',
     },
     text: {
-        fontSize: 20,
+        fontSize: 17,
+        fontFamily: styling.mainFont,
     }
 })
 
