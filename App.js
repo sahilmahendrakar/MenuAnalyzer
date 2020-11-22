@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { getRestaurantsFromLatLong } from './backend/YelpApi';
 import MenuDisplayScreen from './screens/MenuDisplayScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import InfoGodScreen from './screens/InfoGodScreen';
 
 
 const Stack = createStackNavigator();
@@ -27,7 +29,7 @@ export default function App() {
         <Stack.Screen name= "RestaurantSelector" component={RestaurantSelector} options={ {headerShown: false }}/>
         <Stack.Screen name= "CameraScreen" component={CameraScreen} options={ {headerShown: false }}/>
         <Stack.Screen name= "MenuDisplayScreen" component={ MenuDisplayScreen } options={ {headerShown: false }}/>
-        <Stack.Screen name= "ReviewScreen" component={ ReviewScreen } options={ {headerShown: false }}/>
+        <Stack.Screen name= "ReviewScreen" component={ InfoGodScreen } options={ {headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

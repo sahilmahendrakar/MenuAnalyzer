@@ -30,7 +30,15 @@ export default function MenuDisplayScreen({route, navigation}) {
             renderItem={({item}) => (<TouchableOpacity onPress={()=> itemSelected(item)}><Text>{item}</Text></TouchableOpacity>)}
           />)} */}
           <View style={{padding:5}}/>
-          <ScrollView contentContainerStyle={styles.scroll}>{isLoading ? <ActivityIndicator size="large" color="#0000ff"/> : (menuItems.map((item, i) => <TouchableOpacity style={styles.dishBtn} onPress={()=> itemSelected(item)} key={i}><Text style={styles.dishText}>{item}</Text></TouchableOpacity>))}</ScrollView>
+          <ScrollView contentContainerStyle={styles.scroll}>
+                {isLoading ? <View></View> : (<View>
+                <TouchableOpacity style={styles.dishBtn} onPress={()=> itemSelected("Salmon")} ><Text style={styles.dishText}>Salmon</Text></TouchableOpacity>
+                </View>)}
+              {isLoading ? <ActivityIndicator size="large" color="#0000ff"/> : (menuItems.map((item, i) => <TouchableOpacity style={styles.dishBtn} onPress={()=> itemSelected(item)} key={i}><Text style={styles.dishText}>{item}</Text></TouchableOpacity>))}
+              {isLoading ? <View></View> : (<View>
+              <TouchableOpacity style={styles.dishBtn} onPress={()=> itemSelected("Fruit Compote")}><Text style={styles.dishText}>Fruit Compote</Text></TouchableOpacity>
+              </View>)}
+        </ScrollView>
       </SafeAreaView>
     );
 }

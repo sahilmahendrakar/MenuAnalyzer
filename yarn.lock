@@ -2839,7 +2839,7 @@ expo-asset@~8.2.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-camera@^9.0.0:
+expo-camera@~9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-9.0.0.tgz#544fed30b64c80718602fa86e6313982ace49e51"
   integrity sha512-yS49pNrZV5DcBBLNevSEuZRB+MpI7e5WQ2Fb7sIV3havkZLo/K53gHnmgzYYbZFukq6LC4PSQXjcduoiL4I2Bw==
@@ -3279,6 +3279,11 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
+
+fuse.js@^6.4.3:
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.4.3.tgz#aadd6ac34aab5b1d6e6c60462fcb4d1c3f53bb01"
+  integrity sha512-JNgngolukIrqwayWnvy6NLH63hmwKPhm63o0uyBg51jPD0j09IvAzlV1rTXfAsgxpghI7khAo6Mv+EmvjDWXig==
 
 gaxios@^4.0.0:
   version "4.0.1"
